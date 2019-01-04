@@ -15,13 +15,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('combined'));
 
 app.post('/vote', (req, res) => {
-    var authorization = req.headers.authorization;
+    var authorization = req.headers.Authorization;
       
     var bot = req.body.bot;
     var user = req.body.user;
     var type = req.body.type;
 
-    if (bot === undefined || user === undefined || type === undefined || authorization) {
+    if (!bot || !user || !type || authorization) {
         res.setHeader('Content-Type', 'text/plain'); 
         res.statusCode = 403;
         return res.end('MISSING_PARAMS'); 
