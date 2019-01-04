@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('combined'));
 
 app.post('/vote', (req, res) => {
-    var authorization = req.headers.Authorization;
+    var authorization = req.headers.authorization;
       
     var bot = req.body.bot;
     var user = req.body.user;
@@ -27,7 +27,7 @@ app.post('/vote', (req, res) => {
         return res.end('MISSING_PARAMS'); 
     };
       
-    if (authorization !== authorizationKey) {
+    if (authorization != authorizationKey) {
         res.setHeader('Content-Type', 'text/plain'); 
         res.statusCode = 403;
         return res.end('WRONG_SECRET'); 
