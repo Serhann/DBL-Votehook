@@ -21,7 +21,7 @@ app.post('/vote', (req, res) => {
     var user = req.body.user;
     var type = req.body.type;
 
-    if (!bot || !user || !type || authorization) {
+    if (!bot || !user || !type || !authorization) {
         res.setHeader('Content-Type', 'text/plain'); 
         res.statusCode = 403;
         return res.end('MISSING_PARAMS'); 
