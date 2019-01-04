@@ -21,16 +21,16 @@ app.post('/vote', (req, res) => {
     var user = req.body.user;
     var type = req.body.type;
 
-    if (bot === undefined || user === undefined || type === undefined || authorization) return {
+    if (bot === undefined || user === undefined || type === undefined || authorization) {
         res.setHeader('Content-Type', 'text/plain'); 
         res.statusCode = 403;
-        res.end('MISSING_PARAMS'); 
+        return res.end('MISSING_PARAMS'); 
     };
       
-    if (authorization !== authorizationKey) return {
+    if (authorization !== authorizationKey) {
         res.setHeader('Content-Type', 'text/plain'); 
         res.statusCode = 403;
-        res.end('WRONG_SECRET'); 
+        return res.end('WRONG_SECRET'); 
     };
 
     if (type === 'upvote') {
